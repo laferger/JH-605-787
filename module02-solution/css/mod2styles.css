@@ -16,6 +16,7 @@
 
 .firstcol:hover, .secondcol:hover, .thirdcol:hover {
     overflow: auto;
+    cursor:s-resize;
 }
 
 p { padding: 10px; margin-top: 50px; }
@@ -49,23 +50,24 @@ h2 {
 @media (min-width: 768px) and (max-width: 991px) {
 
     .firstcol, .secondcol { width: 48%; }
-    .thirdcol {  width: 100%; }
+    .thirdcol {  width: 98%; }
 
 }
 
 @media (max-width: 767px) {
 
     .firstcol, .secondcol, .thirdcol {
-        width: 100%;
-        margin: 2% 0%;
+        width: 98%;
+        margin: 2% 1%;
     }
     .mobilesize { display: inline; }
     .bigsize { display: none; }
 
     h1 {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-size: 75%;
+        font-size: 90%;
         text-align: left;
+        margin: 1%;
     }
 
     h2 {
