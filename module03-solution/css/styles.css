@@ -1,0 +1,30 @@
+  body {
+    background-color: #659bbd;
+  }
+
+.nav-item {
+  text-align: center;
+}
+
+#navbarTogglerDemo03 {
+  background-color: #8d8741;
+}
+
+.row div {
+  background-color: #fbeec1;
+  border: 1px solid #659bbd;
+  padding: 20px;
+}
+
+/* this gets rid of nav items at medium */
+@media screen and (min-width: 576px) {
+  #navbarTogglerDemo03 {
+    display: none!important;
+  }
+}
+
+@media screen and (min-width: 576px) {
+.container {
+    max-width: 95%;
+}
+}
