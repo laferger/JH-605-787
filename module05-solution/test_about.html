@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    function randomStars () {
+        numStars = Math.floor(Math.random() * 6);
+        document.getElementById("starRating").innerHTML = numStars + "-star rating";
+        var string = '';
+        var replaceArray = ['class1', 'class2', 'class3', 'class4', 'class5'];
+        
+        for (let i = 0; i < 6; i++) {
+            string = replaceArray[i];
+            if (i <= numStars) {
+                string.replace(new RegExp(replaceArray[i], "g"), 'fa fa-star-o');
+                }
+            else {
+                string.replace(new RegExp(replaceArray[i], "g"), 'fa fa-star');
+                }
+            }
+        console.log(string);
+    }
+    </script>
+</head>
+<body onload="randomStars();">
+<i class="fa fa-star-o"></i>
+<i class="fa fa-star"></i>
+<span class="{{class1}}"></span></span>
+<span class="{{class2}}"></span></span>
+<span class="{{class3}}"></span></span>
+<span class="{{class4}}"></span></span>
+<span class="{{class5}}"></span></span>
+<span id="starRating"></span>
+
+<script src="https://kit.fontawesome.com/433d8761f8.js" crossorigin="anonymous"></script>
+</body>
+</html>
