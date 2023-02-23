@@ -170,8 +170,21 @@ dc.loadAbout = function () {
   $ajaxUtils.sendGetRequest(
     aboutUrl,
     function (responseText) {
+      /* here's where I'm going to change the stars */
+      numStars = Math.floor(Math.random() * 6);
+      html = responseText + '<span>' + numStars + '-star rating</span>';
+      
+      for (i=0; i < 6; i++) {
+        if (numStars >= i) {
+            html = insertProperty(html, 'class' + i, 'fa fa-star');
+        }
+        else {
+          html = insertProperty(html, 'class' + i, 'fa fa-star-o');
+        }
+    }
+
       document.querySelector("#main-content")
-        .innerHTML = responseText;
+        .innerHTML = html;
     },
     false);
 };
