@@ -1,0 +1,23 @@
+.green {
+    color:limegreen;
+}
+
+.red {
+    color:crimson;
+}
+
+.black {
+    color: black;
+}
+
+.green-border {
+    border: 3px solid limegreen;
+}
+
+.red-border {
+    border: 3px solid crimson;
+}
+
+.black-border {
+    border: 3px solid black;
+}
