@@ -3,73 +3,94 @@
 
   var shoppingList = [
     {
-      name: "Milk",
-      quantity: "2"
+      name: "Oreos",
+      quantity: "10",
+      pricePerItem: 4.19
     },
     {
-      name: "Donuts",
-      quantity: "200"
+      name: "Chips Ahoy",
+      quantity: "2",
+      pricePerItem: 4.29
     },
     {
-      name: "Cookies",
-      quantity: "300"
+      name: "Fig Newtons",
+      quantity: "1",
+      pricePerItem: 3.99
     },
     {
-      name: "Chocolate",
-      quantity: "5"
+      name: "Nutter Butters",
+      quantity: "5",
+      pricePerItem: 4.99
     }
   ];
   
   angular.module('ShoppingListCheckOff', [])
-  .controller('ShoppingListAddController', ShoppingListAddController)
+  .controller('ToBuyController', ToBuyController)
   .controller('AlreadyBoughtController', AlreadyBoughtController)
-  .service('ShoppingListService', ShoppingListService);
+  .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+  .filter('threeDollarSigns', threeDollarSignsFilter);
+
+ 
+
+
   
-  ShoppingListAddController.$inject = ['ShoppingListService'];
-  function ShoppingListAddController(ShoppingListService) {
-    var itemAdder = this;
+  // ************ Controller 1 ************ //
+  ToBuyController.$inject = ['ShoppingListCheckOffService'];
+  function ToBuyController(ShoppingListCheckOffService) {
+    var toBuy = this;
+
+    // display grocery list
+    toBuy.items = ShoppingListCheckOffService.getItems();
+
+    // buy stuff - this should use the service to take item off to buy listboughtList
+    toBuy.buyItem = function (itemIndex) {
+      ShoppingListCheckOffService.buyItem(itemIndex);
+    };
   
-    itemAdder.itemName = "";
-    itemAdder.itemQuantity = "";
-  
-    itemAdder.addItem = function () {
-      ShoppingListService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
-    }
   }
   
+  // ************ Controller 2 ************ //
+  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', '$scope', 'threeDollarSignsFilter'];
+  function AlreadyBoughtController(ShoppingListCheckOffService, $scope, threeDollarSignsFilter) {
   
-  AlreadyBoughtController.$inject = ['ShoppingListService'];
-  function AlreadyBoughtController(ShoppingListService) {
-    var showList = this;
-  
-    showList.items = ShoppingListService.getItems();
-  
-    showList.buyItem = function (itemIndex) {
-      ShoppingListService.buyItem(itemIndex);
+    var boughtList = this;
+    
+    boughtList.numberBoughtItems = true;
+
+    //show bought items
+    boughtList.items = ShoppingListCheckOffService.getBoughtItems();
+
+  }
+
+  function threeDollarSignsFilter() {
+    return function (input) {
+      input = input || "";
+      input = '$$$' + input;
+      return input;
     };
   }
   
-  
-  function ShoppingListService() {
+
+  // ************** Service ************** //
+  function ShoppingListCheckOffService() {
     var service = this;
   
     // List of shopping items
     var items = shoppingList;
-  
-    // service.addItem = function (itemName, quantity) {
-    //   var item = {
-    //     name: itemName,
-    //     quantity: quantity
-    //   };
-    //   items.push(item);
-    // };
+    var boughtItems = [];
+    var boughtItemTotal = 0;
   
     service.buyItem = function (itemIndex) {
+      boughtItems.push(items[itemIndex]);
       items.splice(itemIndex, 1);
     };
   
     service.getItems = function () {
       return items;
+    };
+  
+    service.getBoughtItems = function () {
+      return boughtItems;
     };
   }
   
