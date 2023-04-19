@@ -18,6 +18,7 @@
       </div>
       <div>
         <h3>Found</h3>
+        <p ng-if="menu.empty">Nothing Found</p>
         <!-- found-items directive here -->
         <found-items found-item="menu.found" on-remove="menu.removeItems(ind)" not-found="menu.notFound">
         </found-items>
