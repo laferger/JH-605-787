@@ -13,8 +13,9 @@
     
       <div>
         <h2>Favorite</h2>
-        <p>{{ myin.menuItemInfo.name }}</p>
+        <p>{{ myin.userInfo.dish }} {{ myin.menuItemInfo.name }}</p>
         <p>{{ myin.menuItemInfo.description }}</p>
+        <p><img src="images/menu/{{ myin.userInfo.dish | limitTo:1 }}/{{ myin.userInfo.dish }}.jpg" alt="menu item"></p>
       </div>
     </p>
 
