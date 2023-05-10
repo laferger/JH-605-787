@@ -10,9 +10,9 @@ function MenuItemService($http, ApiPath) {
   var service = this;
 
   service.getFavoriteMenuItem = function (itemNumber) {
-    //console.log(ApiPath + '/menu_items/' + itemNumber.substring(0, 1) + '/menu_items/' + itemNumber.substring(1, 2) + '.json')
-    //return $http.get(ApiPath + '/menu_items/' + itemNumber.substring(0, 1) + '/menu_items/' + itemNumber.substring(1, 2) + '.json')
-    return $http.get(ApiPath + '/menu_items/A/menu_items/1.json')
+    //alert(ApiPath + '/menu_items/' + itemNumber.substring(0, 1) + '/menu_items/' + itemNumber.substring(1, itemNumber.length) + '.json');
+    return $http.get(ApiPath + '/menu_items/' + itemNumber.substring(0, 1) + '/menu_items/' + itemNumber.substring(1, 2) + '.json')
+    //return $http.get(ApiPath + '/menu_items/A/menu_items/1.json')
     .then(function (response) {
       return response.data;
     });

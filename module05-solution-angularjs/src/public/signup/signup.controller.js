@@ -20,7 +20,7 @@ function SignUpController(MenuService, MenuItemService, UserService) {
     };
 
     reg.submit = function () {
-        reg.menuItem('reg.user.dish').then( function(data){
+        reg.menuItem(reg.user.dish).then( function(data){
             if (data) {
                 UserService.saveUserInfo(reg.user);
                 reg.completed = true;
